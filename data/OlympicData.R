@@ -15,3 +15,21 @@ tbl_summary(
 	include = c(year, weight, height
 	)
 )
+
+# fit a regression
+
+tbl_uvregression(
+	olympics,
+	y = team,
+	include = c(
+		year, weight, height
+	),
+	method = lm
+)
+
+#create a figure
+
+hist(olympics$medals)
+
+#calculating the mean of medals per country
+
