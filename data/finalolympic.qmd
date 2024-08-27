@@ -1,0 +1,50 @@
+---
+title: "Final_Olympics"
+format: html
+editor: visual
+---
+
+```{r}
+#uploading code#
+olympics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-08-06/olympics.csv')
+
+#adding associated packages#
+library(tidyverse)
+library(gtsummary)
+library(broom)
+```
+
+```{r}
+#creating a table using gtsummary#
+
+tbl_summary(
+	olympics,
+	by = year,
+	include = c(year, weight, height
+	)
+)
+```
+
+You can add options to executable code like this
+
+```{r}
+# fit a univariate regression#
+
+	tbl_uvregression(
+		olympics,
+		x = medal,
+		include = c(
+			 year,weight,height
+		),
+		method = lm
+	)
+```
+
+```{r}
+
+#create a figure
+
+hist(olympics$year)
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
