@@ -15,7 +15,10 @@ library(broom)
 ```
 
 ```{r}
-#creating a table using gtsummary#
+#creating a table using gtsummary with appropiate captions#
+
+#| label: tbl-descr
+#| tbl-cap: "Descriptive statistics"
 
 tbl_summary(
 	olympics,
