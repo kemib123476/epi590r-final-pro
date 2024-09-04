@@ -6,11 +6,7 @@ library(tidyverse)
 library(gtsummary)
 library(broom)
 
-#summaries of the objects#
-summary(olympics)
-(olympics$medal)
-
-#creating a table using gtsummary#
+#creating a table of descriptive statistics 3 variables by year#
 
 tbl_summary(
 	olympics,
@@ -31,13 +27,23 @@ tbl_summary(
 	)
 
 
-#create a figure
+#creating a figure of athlete ages in the olympics
 
-hist(olympics$year)
+hist(olympics$age)
 
-#calculating the mean of height per country
+#calculating the mean of a sample of the athletes heights
 
-mean_height <- mean(olympics$height, na.rm = TRUE)
-print(mean_height)
+new_mean <- function(x) {
+	n <- length(x)
+	mean_val <- sum(x) / n
+	return(mean_val)
+}
+
+x <- c(180,170,185,185)
+
+new_mean(x = c(180,170,185,185))
+mean(c(180,170,185,185))
+
+
 
 
