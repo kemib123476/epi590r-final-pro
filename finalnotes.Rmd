@@ -1,0 +1,52 @@
+#Notes to reproduce#
+
+#uploading code#
+olympics <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-08-06/olympics.csv')
+
+#adding associated packages#
+library(tidyverse)
+library(gtsummary)
+library(broom)
+
+{r}
+#creating a table using gtsummary#
+
+#| label: tbl-descr
+#| tbl-cap: "Descriptive Statistics"
+knitr::kable(olympics)
+
+tbl_summary(
+	olympics,
+	by = year,
+	include = c(year, weight, height
+	)
+)
+
+{r}
+# fit a univariate regression#
+
+#| label: tbl-reg
+#| tbl-cap: "Univariate Regression of year on other variables"
+
+	tbl_uvregression(
+		olympics,
+		y = year,
+		include = c(
+			 medal,weight,height
+		),
+		method = lm
+	)
+	
+	#create a figure
+
+#| label: fig-hist
+#| fig-cap: "Histogram of Athlete's Ages"
+
+hist(olympics$age)
+
+{r}
+
+stats <- list(n = nrow(olympics),
+							mean_height = mean(olympics$height, na.rm = TRUE))
+
+print(stats)
