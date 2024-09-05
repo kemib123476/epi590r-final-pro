@@ -22,7 +22,6 @@ library(broom)
 
 #| label: tbl-descr
 #| tbl-cap: "Descriptive Statistics"
-knitr::kable(olympics)
 
 tbl_summary(
 	olympics,
@@ -30,6 +29,7 @@ tbl_summary(
 	include = c(year, weight, height
 	)
 )
+
 ```
 
 ```{r}
@@ -59,8 +59,9 @@ hist(olympics$age)
 
 
 ```
-
+```
 @tbl-descr contains a table and @fig-hist a histogram.
+
 
 ```{r}
 
@@ -70,5 +71,6 @@ stats <- list(n = nrow(olympics),
 print(stats)
 
 ```
-2. There were `r stats$n` athletes. 
-3. The mean height of the athletes was `r mean(olympics$height)`
+
+2.  There were `r stats$n` athletes.
+3.  The mean height of the athletes was `r mean(olympics$height, na.rm = TRUE)`
