@@ -19,9 +19,9 @@ tbl_summary(
 
 	tbl_uvregression(
 		olympics,
-		x = medal,
+		y = year,
 		include = c(
-			 year,weight,height
+			 medal,weight,height
 		),
 		method = lm
 	)

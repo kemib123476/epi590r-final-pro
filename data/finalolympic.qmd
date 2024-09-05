@@ -2,6 +2,7 @@
 title: "Final_Olympics"
 format: html
 editor: visual
+table-caption: true
 ---
 
 ```{r}
@@ -14,11 +15,14 @@ library(gtsummary)
 library(broom)
 ```
 
+1.  This data this comes from the RGriffin Kaggle dataset which is basic bio data on athletes and medal results from Athens 1896 to Rio 2016.
+
 ```{r}
-#creating a table using gtsummary with appropiate captions#
+#creating a table using gtsummary#
 
 #| label: tbl-descr
-#| tbl-cap: "Descriptive statistics"
+#| tbl-cap: "Descriptive Statistics"
+knitr::kable(olympics)
 
 tbl_summary(
 	olympics,
@@ -28,16 +32,17 @@ tbl_summary(
 )
 ```
 
-You can add options to executable code like this
-
 ```{r}
 # fit a univariate regression#
 
+#| label: tbl-reg
+#| tbl-cap: "Univariate Regression of year on other variables"
+
 	tbl_uvregression(
 		olympics,
-		x = medal,
+		y = year,
 		include = c(
-			 year,weight,height
+			 medal,weight,height
 		),
 		method = lm
 	)
@@ -47,7 +52,23 @@ You can add options to executable code like this
 
 #create a figure
 
-hist(olympics$year)
+#| label: fig-hist
+#| fig-cap: "Histogram of Athlete's Ages"
+
+hist(olympics$age)
+
+
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+@tbl-descr contains a table and @fig-hist a histogram.
+
+```{r}
+
+stats <- list(n = nrow(olympics),
+							mean_height = mean(olympics$height, na.rm = TRUE))
+
+print(stats)
+
+```
+2. There were `r stats$n` athletes. 
+3. The mean height of the athletes was `r mean(olympics$height)`
